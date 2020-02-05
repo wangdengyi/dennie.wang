@@ -1,0 +1,11 @@
+/node_modules
+/.idea
+/.vscode
+.swp
+npm-debug.log
+yarn-error.log
+.env
+/mix-manifest.json
+/resources/blog-docs
+/logs
+/config/config.toml

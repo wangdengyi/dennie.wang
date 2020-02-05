@@ -1,0 +1,30 @@
+{{ define "layouts/_header.html" }}
+	<header>
+		<div id="page-top"></div>
+		<nav class="navbar navbar-expand-md navbar-light shadow bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="/" target="_balnk">{{ .cfg.Name }}</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars"
+					aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbars">
+					<ul class="navbar-nav mr-auto">
+						{{ range $i, $category := .categories }}
+						<li class="nav-item mr-3 {{ if $category.Active }}active{{ end }}">
+							<a class="nav-link" href="{{ $category.Path }}" title="{{ $category.Description }}">{{ $category.Title }}</a>
+						</li>
+						{{ end }}
+					</ul>
+
+					<button class="btn">
+						<span class="iconfont icon-search text-primary"></span>
+					</button>
+					<span class="caret"></span>
+				</div>
+			</div>
+		</nav>
+
+	</header>
+{{ end }}

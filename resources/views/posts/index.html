@@ -1,0 +1,52 @@
+{{ define "posts/index.html" }}
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+	{{ template "layouts/_head.html" . }}
+</head>
+
+<body class="d-flex flex-column h-100">
+
+	{{ template "layouts/_header.html" . }}
+
+	<main class="flex-shrink-0 my-4">
+		<div class="container text-secondary">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="container p-3">
+						{{ if .posts }}
+						<ul class="list-unstyled article-list">
+							{{ range $index, $post := .posts }}
+							<li class="media mb-3">
+								<div class="media-body">
+									<h1 class="mb-1"><a class="text-dark" href="/posts/{{ $post.Path }}">{{ $post.Title }} </a></h1>
+									<p>
+										<a class="text-secondary" href="{{ $post.HomePage }}">{{ $post.Author }}</a>
+										 &rarr; <small>update: {{ $post.UpdatedAt.Format "2006-01-02" }}</small>
+									</p>
+									<p>
+										{{ $post.Description }}
+									</p>
+								</div>
+							</li>
+							{{ end }}
+						</ul>
+						{{ end }}
+					</div>
+				</div>
+				<div class="col-md-3">
+					{{ template "posts/_right.html" . }}
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	{{ template "layouts/_footer.html" . }}
+	{{ template "layouts/_js.html" . }}
+
+	{{/* 自定义 js 写在这个下面 */}}
+</body>
+
+</html>
+{{ end }}
