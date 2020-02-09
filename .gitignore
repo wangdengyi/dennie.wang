@@ -9,3 +9,4 @@ yarn-error.log
 /resources/blog-docs
 /logs
 /config/config.toml
+blog
