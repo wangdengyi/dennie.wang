@@ -1,41 +1,7 @@
-# Bro Qiang 博客
+# denniewang的博客
+## 基于https://github.com/broqiang/mdblog博客修改，感谢broqiang
+源码： [dennie.wang](https://github.com/wangdengyi/dennie.wang)
 
-示例： [broqiang.com](https://broqiang.com) （个人博客，正在使用）
-
-源码： [dennie.wang](https://dennie.wang)
-
-## 提示
-
-此项目已经由 dep 管理更换为 mod 管理， 但是文档没有更新， 有空再更新文档～～～～～
-
-## 环境
-
-- 开发环境 Ubuntu 18.04
-
-- 服务器环境 CentOS 7.6
-
-其他环境没有测试过，不确定是否兼容（如 Windows、MAC）， 后面的所有步骤都假定是在 Linux（上面两种系统） 下完成。
-
-## 快速使用
-
-如果不需要自己编译，只是想要查看下效果，可以直接下载[mdblog.tar.gz](https://dennie.wang/releases/download/v1.1.0/mdblog.tar.gz)
-这个我已经编译好了的版本到本地，然后执行：
-
-```bash
-tar xzvf mdblog.tar.gz
-cd mdblog
-./blog
-```
-
-在 `./blog` 之前需要先 [配置](https://dennie.wang#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6) 一下配置文件
-
-然后浏览器访问 [http://localhost:8091](http://localhost:8091)
-
-即可查看效果，只需要在 `resource/blog-docs` 目录中放入 markdown 文件即可使用。
-
-> 需要注意， markdown 文件必须放在 blog-docs 的二级目录下才会被解析，如： resources/blog-docs/linux
-
-如果想要修改，或者查看源码，请继续往下看文档。
 
 ## 需求
 
@@ -91,59 +57,6 @@ cd mdblog
 ### Go 编译
 
 编译前要保证已经正确安装了 Go 环境，并配置好环境变量， GOROOT 和 GOPATH
-
-#### 安装 dep
-
-这个是一个官方的依赖管理工作，见 [https://github.com/golang/dep](https://github.com/golang/dep) ， 有详细的介绍和安装步骤。
-
-安装
-
-```bash
-go get -u github.com/golang/dep/cmd/dep
-```
-
-然后执行下面命令，查看结果，如果有下面类似的结果证明安装成功
-
-```bash
-$ dep version
-dep:
- version     : devel
- build date  :
- git hash    :
- go version  : go1.12
- go compiler : gc
- platform    : linux/amd64
- features    : ImportDuringSolve=false
-```
-
-#### 安装博客
-
-这是要指定目录，因为 GOPATH 的引入着这样做的，如果想要换成其他目录，需要同时修改包的导入路径。
-
-```bash
-# 创建项目保存的目录
-mkdir $GOPATH/src/github.com/broqiang
-
-# 进入到目录
-cd $GOPATH/src/github.com/broqiang
-
-# 下载项目
-git clone https://dennie.wang.git
-
-# 初始化项目（恢复依赖）
-dep ensure
-```
-
-#### 修改配置文件
-
-需要将项目 mdblog 目录下的 `config/config.example.toml` 复制一份
-
-```bash
-cd yourpath/config
-cp config.example.toml config.toml
-```
-
-然后根据需要修改下配置，在配置文件中有详细的注释，说明每一个配置是用来做什么的。
 
 #### 启动服务
 
@@ -289,9 +202,3 @@ server {
 - Secret: 自定义一个密钥，要和 `config.toml` 中的 secret 的值保持一直
 
 钩子生效后， blog-docs 再 push 的时候 mdblog 就可以自动更新文档并显示了。
-
-## 更新日志
-
-### 2019-04-28 添加 github 钩子，自动同步 blog-docs 的文档
-
-### 2019-06-14 因为最近网络波动较大， 为了解决 dep 恢复依赖比较困难， 将 vendor 目录加入到版本控制
